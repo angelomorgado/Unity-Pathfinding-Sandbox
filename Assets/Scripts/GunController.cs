@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    // Public Variables
-    [SerializeField] private int gunDamage = 1; // Set the number of hitpoints that this gun will take away from shot objects with a health script
-    // [SerializeField] private float fireRate = 0.25f; // Number in seconds which controls how often the player can fire
-    [SerializeField] private float weaponRange = 50f; // Distance in Unity units over which the player can fire
-    // [SerializeField] private float hitForce = 100f; // Amount of force which will be added to objects with a rigidbody shot by the player
-    [SerializeField] private Camera fpsCam; // Holds a reference to the first person camera
-    [SerializeField] private ParticleSystem muzzleFlash; // Holds a reference to the muzzle flash particle system
-    private AudioSource gunAudio; // Reference to the audio source which will play our shooting sound effect
-
+    [SerializeField] private int gunDamage = 1;
+    [SerializeField] private float fireRate = 0.25f; // Number in seconds which controls how often the player can fire
+    [SerializeField] private float weaponRange = 50f; 
+    [SerializeField] private float hitForce = 100f; 
+    [SerializeField] private Camera fpsCam; 
+    [SerializeField] private ParticleSystem muzzleFlash;
+    private AudioSource gunAudio; 
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +23,14 @@ public class GunController : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            // Shoot();
+            InvokeRepeating("Shoot", 0f, fireRate); // Call the Shoot function repeatedly after a delay of 0 seconds, then repeat every 0.25 seconds
         }
-        
+
+        if(Input.GetButtonUp("Fire1"))
+        {
+            CancelInvoke("Shoot"); // Cancel the Shoot function
+        }
     }
 
     void Shoot()
@@ -44,9 +47,13 @@ public class GunController : MonoBehaviour
             GameObject hitObject = hit.transform.gameObject;
             
             // Check if the object tag is Target
-            if(hitObject.CompareTag("Target"))
+            if(hitObject.CompareTag("Zombie"))
             {
                 hitObject.GetComponent<GunTarget>().TakeDamage(gunDamage);
+            }
+            else if(hitObject.CompareTag("Target"))
+            {
+                hitObject.GetComponent<Rigidbody>().AddForce(-hit.normal * hitForce);
             }
         }
     }
