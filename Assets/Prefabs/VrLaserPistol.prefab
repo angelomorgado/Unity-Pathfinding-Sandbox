@@ -237,6 +237,7 @@ MonoBehaviour:
   hitForce: 100
   muzzleFlash: {fileID: 7082555414627907109}
   frontOfGun: {fileID: 7724519042079594620}
+  input: {fileID: 8601062704385354318, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!120 &7705771606903023446
 LineRenderer:
   m_ObjectHideFlags: 0
