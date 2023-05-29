@@ -14,7 +14,7 @@ public class VrGunController : MonoBehaviour
     private LineRenderer lineRenderer;
 
     // Input System
-    [SerializeField] private InputActionReference input;
+    [SerializeField] private InputActionReference shootActionReference;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class VrGunController : MonoBehaviour
         lineRenderer.positionCount = 2; // Set the number of points in the line
 
         // Activate Input System
-        input.action.performed += OnShoot;
+        shootActionReference.action.performed += OnShoot;
     }
 
     // Update is called once per frme

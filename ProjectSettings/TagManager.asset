@@ -7,6 +7,7 @@ TagManager:
   - Target
   - CinemachineTarget
   - Zombie
+  - Ground
   layers:
   - Default
   - TransparentFX
