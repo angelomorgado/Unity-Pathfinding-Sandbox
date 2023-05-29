@@ -14,7 +14,7 @@ public class PlatformDetection : MonoBehaviour
         Debug.Log("Platform: " + Application.platform);
         Debug.Log("XR Device: " + XRSettings.loadedDeviceName);
 
-        if(XRSettings.loadedDeviceName == "oculus display")
+        if(XRSettings.loadedDeviceName != "")
         {
             Debug.Log("VR Player");
             vrPlayer.SetActive(true);
