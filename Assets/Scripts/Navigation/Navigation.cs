@@ -31,6 +31,9 @@ public class Navigation
         else{
             path = astar.FindPath(nodes, startNode, destinationNode);
         }
+        if(path == null){
+            Debug.Log("Can't calculate path!");
+        }
         return path;
 
     }

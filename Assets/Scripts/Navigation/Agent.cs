@@ -45,10 +45,10 @@ public class Agent : MonoBehaviour
         Vector3 startPosition = transform.position;
         
         List<NavMeshNode> path = navigation.Navigate(navMeshData, startPosition, destination);
-        MoveAlongNodes(path);
+        MoveAlongNodes(path, destination);
     }
 
-    public void MoveAlongNodes(List<NavMeshNode> nodes)
+    public void MoveAlongNodes(List<NavMeshNode> nodes, Vector3 destination)
     {
         // Store the positions of the nodes
         nodePositions = new List<Vector3>();
@@ -58,10 +58,10 @@ public class Agent : MonoBehaviour
         }
 
         // Start moving towards the first node
-        StartCoroutine(MoveToNextNode());
+        StartCoroutine(MoveToNextNode(destination));
     }
 
-    private IEnumerator MoveToNextNode()
+    private IEnumerator MoveToNextNode(Vector3 destination)
     {
         while (currentNodeIndex < nodePositions.Count)
         {
@@ -70,11 +70,13 @@ public class Agent : MonoBehaviour
             {
                 Debug.Log(transform.position);
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
+                transform.LookAt(target.position);
                 yield return null;
             }
 
             currentNodeIndex++;
         }
+
 
         // Reached the end of the nodes
         // You can perform any desired action here
