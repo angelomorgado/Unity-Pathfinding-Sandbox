@@ -7,26 +7,21 @@ using UnityEngine.SceneManagement;
 public class ButtonHandler : MonoBehaviour
 {
     public Button button;
+    public Dropdown_Controller dropdown_controller;
     public string choice;
-    public int map_chosen;
-    private Load_scenes load;
-
-    // constructor
-    public ButtonHandler(Button button)
-    {
-        button = button;
-        choice = button.name;
-    }
+    public int map_chosen, algorithm_chosen;
 
     private void Start()
     {
         choice = button.name;
 
-        load = new Load_scenes();
+        dropdown_controller = new Dropdown_Controller();
 
         // Retrieve the stored map_chosen value, or default to -1 if it doesn't exist
         map_chosen = PlayerPrefs.GetInt("MapChoice", 2);
-        Debug.Log("map_chosen: " + map_chosen);
+
+        // Retrieve the stored algorithm_chosen value, or default to 0 if it doesn't exist
+        algorithm_chosen = PlayerPrefs.GetInt("AlgorithmChoice", 0);
 
         // Add a click listener to the button
         button.onClick.AddListener(ButtonClicked);
@@ -35,8 +30,14 @@ public class ButtonHandler : MonoBehaviour
     private void savingMapChosen(int map_chosen)
     {
         // Store the map_chosen value in PlayerPrefs
-        Debug.Log("Saving map_chosen: " + map_chosen);
         PlayerPrefs.SetInt("MapChoice", map_chosen);
+        PlayerPrefs.Save();
+    }
+
+    private void savingAlgorithmChosen(int algorithm_chosen)
+    {
+        // Store the algorithm_chosen value in PlayerPrefs
+        PlayerPrefs.SetInt("AlgorithmChoice", algorithm_chosen);
         PlayerPrefs.Save();
     }
 
@@ -47,6 +48,10 @@ public class ButtonHandler : MonoBehaviour
     // 3 - Space map
     // Maze map (TODO)
     // 4 - Sample mechanics
+
+    // Algorithms order in dropdown:
+    // 0 - A*
+    // 1 - Dijkstra
 
     private void ButtonClicked()
     {
@@ -60,24 +65,28 @@ public class ButtonHandler : MonoBehaviour
                 savingMapChosen(3);
                 break;
 
+            case "Playground_select":
+                savingMapChosen(4);
+                break;
+
             case "Maze_select":
                 // TODO
-                // map_chosen = 4;
+                // savingMapChosen(5);
                 break;
 
             case "Exit":
                 // Load main menu
-                load.LoadScene(0);
+                SceneManager.LoadScene(0);
                 break;
 
             case "Settings":
                 // Load settings menu
-                load.LoadScene(1);
+                SceneManager.LoadScene(1);
                 break;
 
             case "Start":
                 // Load chosen map
-                load.LoadScene(map_chosen);
+                SceneManager.LoadScene(map_chosen);
                 break;
 
             case "End":
