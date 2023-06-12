@@ -3,29 +3,37 @@ using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum AlgoEnum
+{
+    Astar,
+    Dijkstra
+}
+
 
 public class Agent : MonoBehaviour
 {
     public Transform target;
-    public Transform transform;
+    public AlgoEnum algo;
     private NavMeshAgent navMeshAgent;
     private Navigation navigation;
     private NodesOperations nodesOps;
     private List<Vector3> nodePositions;
     private int currentNodeIndex = 0;
     public float movementSpeed = 5f;
-
+    private bool isMoving = false; 
+    
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        navigation = new Navigation();
+        navigation = new Navigation(algo);
         nodesOps = new NodesOperations();
     }
 
-    private void Start()
+    private void Update()
     {
-        if (target != null)
+        if (!isMoving)
         {
+            isMoving = true;
             CalculatePath(target.position);
         }
     }
@@ -60,6 +68,7 @@ public class Agent : MonoBehaviour
             Vector3 targetPosition = nodePositions[currentNodeIndex];
             while (transform.position != targetPosition)
             {
+                Debug.Log(transform.position);
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
                 yield return null;
             }
@@ -70,6 +79,8 @@ public class Agent : MonoBehaviour
         // Reached the end of the nodes
         // You can perform any desired action here
         Debug.Log("Reached the end of the nodes");
+        isMoving = false;
+        currentNodeIndex = 0;
     }
 
 }

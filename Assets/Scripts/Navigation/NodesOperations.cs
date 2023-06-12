@@ -102,6 +102,21 @@ public class NodesOperations
         return lowestNode;
     }
 
+    public NavMeshNode GetNodeWithLowestGCost(List<NavMeshNode> nodes)
+    {
+        NavMeshNode lowestNode = nodes[0];
+
+        for (int i = 1; i < nodes.Count; i++)
+        {
+            if (nodes[i].G < lowestNode.G)
+            {
+                lowestNode = nodes[i];
+            }
+        }
+
+        return lowestNode;
+    }
+
     public NavMeshNode FindClosestNode(List<NavMeshNode> allNodes, Vector3 position)
     {
         NavMeshNode closestNode = null;

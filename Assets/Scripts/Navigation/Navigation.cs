@@ -6,13 +6,16 @@ using System.Collections.Generic;
 
 public class Navigation
 {
-    public float movementSpeed = 5f;
-    private List<Vector3> nodePositions;
-    private int currentNodeIndex = 0;
-    private Transform transform;
 
     Astar astar = new Astar();
+    Dijkstra dijkstra = new Dijkstra();
     NodesOperations nodesOps = new NodesOperations();
+    private AlgoEnum algo;
+
+    public Navigation(AlgoEnum enumValue)
+    {
+        algo = enumValue;
+    }
 
     public List<NavMeshNode> Navigate(NavMeshTriangulation navMeshData, Vector3 startPosition, Vector3 destination)
     {
@@ -21,7 +24,13 @@ public class Navigation
 
         NavMeshNode startNode = nodesOps.FindClosestNode(nodes, startPosition);
         NavMeshNode destinationNode = nodesOps.FindClosestNode(nodes, destination);
-        List<NavMeshNode> path = astar.FindPath(nodes, startNode, destinationNode);
+        List<NavMeshNode> path;
+        if(algo == AlgoEnum.Dijkstra){
+            path = dijkstra.FindPath(nodes, startNode, destinationNode);
+        }
+        else{
+            path = astar.FindPath(nodes, startNode, destinationNode);
+        }
         return path;
 
     }
