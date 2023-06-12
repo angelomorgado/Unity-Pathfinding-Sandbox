@@ -35,9 +35,9 @@ public class ZombieController : MonoBehaviour
 
     IEnumerator Die()
     {
-        // Play the Fall motion
         animator.SetTrigger("Fall");
-        yield return new WaitForSeconds(1);
+        // Play the Fall motion
+        yield return new WaitForSeconds(2f);
         // Destroy the zombie
         Destroy(gameObject);
     }
