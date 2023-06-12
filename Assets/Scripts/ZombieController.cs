@@ -7,6 +7,7 @@ public class ZombieController : MonoBehaviour
     private Animator animator;
     [SerializeField] private int health = 3;
     private AudioSource gunAudio; 
+    [SerializeField] private GameObject target;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,7 @@ public class ZombieController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void TakeDamage(int damage)

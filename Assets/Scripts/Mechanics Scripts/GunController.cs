@@ -42,6 +42,7 @@ public class GunController : MonoBehaviour
         RaycastHit hit; // Declare a raycast hit to store information about what our raycast has hit
         if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, weaponRange))
         {
+            // Position of the raycast hit
             Debug.Log(hit.transform.name);
 
             GameObject hitObject = hit.transform.gameObject;
