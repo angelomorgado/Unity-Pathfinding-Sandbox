@@ -49,7 +49,9 @@ public class GunController : MonoBehaviour
             // Check if the object tag is Target
             if(hitObject.CompareTag("Zombie"))
             {
-                hitObject.GetComponent<GunTarget>().TakeDamage(gunDamage);
+                Debug.Log("Zombie hit!!");
+
+                hitObject.GetComponent<ZombieController>().TakeDamage(gunDamage);
             }
             else if(hitObject.CompareTag("Target"))
             {
