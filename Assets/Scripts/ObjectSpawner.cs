@@ -8,6 +8,7 @@ public class ObjectSpawner : MonoBehaviour
     public GameObject objectToSpawn;
     public int maxObjects;
     public List<GameObject> spawnedObjects = new List<GameObject>();
+    public Transform target;
 
 
     private void Update()
@@ -26,8 +27,7 @@ public class ObjectSpawner : MonoBehaviour
             GameObject spawnedObject = Instantiate(objectToSpawn, spawnPosition, spawnRotation);
             
             // Set the target of the spawned zombie
-            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-            spawnedObject.GetComponent<Agent>().target = playerObject.transform;
+            spawnedObject.GetComponent<Agent>().target = target;
             
             spawnedObjects.Add(spawnedObject);
         }

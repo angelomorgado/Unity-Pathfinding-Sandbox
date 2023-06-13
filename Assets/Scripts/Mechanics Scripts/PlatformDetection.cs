@@ -19,12 +19,14 @@ public class PlatformDetection : MonoBehaviour
             Debug.Log("VR Player");
             vrPlayer.SetActive(true);
             pcPlayer.SetActive(false);
+            GameObject.Find("Spawners").GetComponent<ObjectSpawner>().target = GameObject.Find("XR Origin").transform;
         }
         else
         {
             Debug.Log("PC Player");
             vrPlayer.SetActive(false);
             pcPlayer.SetActive(true);
+            GameObject.Find("Spawners").GetComponent<ObjectSpawner>().target = pcPlayer.transform;
         }
     }
 }
