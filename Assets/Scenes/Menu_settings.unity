@@ -259,8 +259,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 2896316}
+  dropdown_controller: {fileID: 0}
   choice: 
   map_chosen: 0
+  algorithm_chosen: 0
 --- !u!1 &4261687
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,8 +399,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 4261689}
+  dropdown_controller: {fileID: 0}
   choice: 
   map_chosen: 0
+  algorithm_chosen: 0
 --- !u!1 &99402525
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,8 +615,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 311628100}
+  dropdown_controller: {fileID: 0}
   choice: 
   map_chosen: 0
+  algorithm_chosen: 0
 --- !u!1 &369519843
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,7 +750,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Astar Algorithm
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1027,7 +1033,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Settings
+  m_text: Level Selection
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: de179f779576a0f42b13a4d190f029ca, type: 2}
   m_sharedMaterial: {fileID: 5347413285351561178, guid: de179f779576a0f42b13a4d190f029ca,
@@ -1465,7 +1471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropdown: {fileID: 763039767}
-  chosen_algorithm: 
+  chosen_algorithm: 0
 --- !u!1 &765848524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,8 +1663,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 849304397}
+  dropdown_controller: {fileID: 0}
   choice: 
   map_chosen: 0
+  algorithm_chosen: 0
 --- !u!114 &849304397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3450,7 +3458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 272, y: -295}
+  m_AnchoredPosition: {x: 272, y: -252}
   m_SizeDelta: {x: 156, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2054982612
@@ -3560,8 +3568,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 2054982612}
+  dropdown_controller: {fileID: 0}
   choice: 
   map_chosen: 0
+  algorithm_chosen: 0
 --- !u!4 &4935365249640846
 Transform:
   m_ObjectHideFlags: 0

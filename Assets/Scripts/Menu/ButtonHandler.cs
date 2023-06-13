@@ -46,8 +46,9 @@ public class ButtonHandler : MonoBehaviour
     // 1 - Menu settings
     // 2 - Cyber map
     // 3 - Space map
-    // Maze map (TODO)
-    // 4 - Sample mechanics
+    // 4 - Playground map
+    // 5 - Maze map
+    // 6 - Sample mechanics
 
     // Algorithms order in dropdown:
     // 0 - A*
@@ -58,20 +59,27 @@ public class ButtonHandler : MonoBehaviour
         switch (button.name)
         {
             case "Cyber_select":
-                savingMapChosen(2);
+                // Loads cyber map
+                Debug.Log("Algoritm chosen: " + PlayerPrefs.GetInt("AlgorithmChoice", 0));
+                SceneManager.LoadScene(2);
                 break;
 
             case "Space_select":
-                savingMapChosen(3);
+                // Loads space map
+                Debug.Log("Algoritm chosen: " + PlayerPrefs.GetInt("AlgorithmChoice", 0));
+                SceneManager.LoadScene(3);
                 break;
 
             case "Playground_select":
-                savingMapChosen(4);
+                // Loads playground map
+                Debug.Log("Algoritm chosen: " + PlayerPrefs.GetInt("AlgorithmChoice", 0));
+                SceneManager.LoadScene(4);
                 break;
 
             case "Maze_select":
-                // TODO
-                // savingMapChosen(5);
+                // Loads maze map
+                Debug.Log("Algoritm chosen: " + PlayerPrefs.GetInt("AlgorithmChoice", 0));
+                SceneManager.LoadScene(5);
                 break;
 
             case "Exit":
@@ -79,14 +87,9 @@ public class ButtonHandler : MonoBehaviour
                 SceneManager.LoadScene(0);
                 break;
 
-            case "Settings":
-                // Load settings menu
-                SceneManager.LoadScene(1);
-                break;
-
             case "Start":
                 // Load chosen map
-                SceneManager.LoadScene(map_chosen);
+                SceneManager.LoadScene(1);
                 break;
 
             case "End":

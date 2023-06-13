@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Additional Addons/StarterAssets/FirstPersonController/Scenes/Playground.unity
     guid: 707acc8dffb72b144bb1ffbe1c965f3d
   - enabled: 1
+    path: Assets/Scenes/MazeBenchmark.unity
+    guid: 7ab9b7ea22b138b4cad831f7c6614e7e
+  - enabled: 1
     path: Assets/Scenes/SampleMechanicsScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
