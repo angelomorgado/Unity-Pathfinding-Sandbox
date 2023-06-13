@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -115,6 +116,13 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			
+			if(Input.GetKey(KeyCode.Escape))
+        	{	
+				SceneManager.LoadScene(0);
+            	Cursor.lockState = CursorLockMode.None;
+            	Cursor.visible = true;
+        	}
 		}
 
 		private void LateUpdate()

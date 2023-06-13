@@ -25,6 +25,12 @@ public class Agent : MonoBehaviour
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        if(PlayerPrefs.GetInt("AlgorithmChoice", 0) == 0)
+            algo = AlgoEnum.Astar;
+        else
+            algo = AlgoEnum.Dijkstra;
+        
+        Debug.Log("ALGO: " + algo);
         navigation = new Navigation(algo);
         nodesOps = new NodesOperations();
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GunController : MonoBehaviour
 {
@@ -30,6 +31,14 @@ public class GunController : MonoBehaviour
         if(Input.GetButtonUp("Fire1"))
         {
             CancelInvoke("Shoot"); // Cancel the Shoot function
+        }
+
+        // Redirects user to main menu
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 

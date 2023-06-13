@@ -9,7 +9,7 @@ public class ButtonHandler : MonoBehaviour
     public Button button;
     public Dropdown_Controller dropdown_controller;
     public string choice;
-    public int map_chosen, algorithm_chosen;
+    public int map_chosen;
 
     private void Start()
     {
@@ -17,28 +17,17 @@ public class ButtonHandler : MonoBehaviour
 
         dropdown_controller = new Dropdown_Controller();
 
-        // Retrieve the stored map_chosen value, or default to -1 if it doesn't exist
-        map_chosen = PlayerPrefs.GetInt("MapChoice", 2);
-
-        // Retrieve the stored algorithm_chosen value, or default to 0 if it doesn't exist
-        algorithm_chosen = PlayerPrefs.GetInt("AlgorithmChoice", 0);
+        // Retrieve the stored algorithm choice value, or default to 0 if it doesn't exist
+        PlayerPrefs.SetInt("AlgorithmChoice", 0);
 
         // Add a click listener to the button
         button.onClick.AddListener(ButtonClicked);
     }
 
-    private void savingMapChosen(int map_chosen)
+    private void lockCursor()
     {
-        // Store the map_chosen value in PlayerPrefs
-        PlayerPrefs.SetInt("MapChoice", map_chosen);
-        PlayerPrefs.Save();
-    }
-
-    private void savingAlgorithmChosen(int algorithm_chosen)
-    {
-        // Store the algorithm_chosen value in PlayerPrefs
-        PlayerPrefs.SetInt("AlgorithmChoice", algorithm_chosen);
-        PlayerPrefs.Save();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Scenes order in build settings:
@@ -62,24 +51,28 @@ public class ButtonHandler : MonoBehaviour
                 // Loads cyber map
                 Debug.Log("Algoritm chosen: " + PlayerPrefs.GetInt("AlgorithmChoice", 0));
                 SceneManager.LoadScene(2);
+                lockCursor();
                 break;
 
             case "Space_select":
                 // Loads space map
                 Debug.Log("Algoritm chosen: " + PlayerPrefs.GetInt("AlgorithmChoice", 0));
                 SceneManager.LoadScene(3);
+                lockCursor();
                 break;
 
             case "Playground_select":
                 // Loads playground map
                 Debug.Log("Algoritm chosen: " + PlayerPrefs.GetInt("AlgorithmChoice", 0));
                 SceneManager.LoadScene(4);
+                lockCursor();
                 break;
 
             case "Maze_select":
                 // Loads maze map
                 Debug.Log("Algoritm chosen: " + PlayerPrefs.GetInt("AlgorithmChoice", 0));
                 SceneManager.LoadScene(5);
+                lockCursor();
                 break;
 
             case "Exit":
