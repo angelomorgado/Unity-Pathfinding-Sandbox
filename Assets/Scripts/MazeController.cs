@@ -24,12 +24,12 @@ public class MazeController : MonoBehaviour
     void Update()
     {
         // If the waypoints collide with the agents, move them to new positions
-        if (Vector3.Distance(blueWaypoint.transform.position, GameObject.FindGameObjectWithTag("BlueZombie").transform.position) < 2f)
+        if (Vector3.Distance(blueWaypoint.transform.position, GameObject.FindGameObjectWithTag("BlueZombie").transform.position) < 2.5f)
         {
             blueWaypoint.transform.position = RandomNavmeshLocation();
         }
 
-        if (Vector3.Distance(redWaypoint.transform.position, GameObject.FindGameObjectWithTag("RedZombie").transform.position) < 2f)
+        if (Vector3.Distance(redWaypoint.transform.position, GameObject.FindGameObjectWithTag("RedZombie").transform.position) < 2.5f)
         {
             redWaypoint.transform.position = RandomNavmeshLocation();
         }
@@ -49,7 +49,9 @@ public class MazeController : MonoBehaviour
             UnityEngine.AI.NavMeshHit hit;
             if (UnityEngine.AI.NavMesh.SamplePosition(randomPoint, out hit, 1f, UnityEngine.AI.NavMesh.AllAreas))
             {
-                return hit.position;
+                Vector3 direction = hit.position - randomPoint;
+                Vector3 centerPoint = randomPoint + direction.normalized * 0.5f;
+                return centerPoint;
             }
         }
     }
