@@ -14,10 +14,14 @@ public class MazeController : MonoBehaviour
     [SerializeField]
     GameObject redWaypoint;
 
-    // Start is called before the first frame update
+    [SerializeField]
+    GameObject greenWaypoint;
+
     void Start()
     {
-
+        blueWaypoint.transform.position = RandomNavmeshLocation();
+        redWaypoint.transform.position = RandomNavmeshLocation();
+        greenWaypoint.transform.position = RandomNavmeshLocation();
     }
 
     // Update is called once per frame
@@ -32,6 +36,11 @@ public class MazeController : MonoBehaviour
         if (Vector3.Distance(redWaypoint.transform.position, GameObject.FindGameObjectWithTag("RedZombie").transform.position) < 2.5f)
         {
             redWaypoint.transform.position = RandomNavmeshLocation();
+        }
+
+        if (Vector3.Distance(greenWaypoint.transform.position, GameObject.FindGameObjectWithTag("GreenZombie").transform.position) < 2.5f)
+        {
+            greenWaypoint.transform.position = RandomNavmeshLocation();
         }
     }
 

@@ -13,6 +13,7 @@ TagManager:
   - RedZombie
   - BlueZombie
   - Zombies
+  - GreenZombie
   layers:
   - Default
   - TransparentFX

@@ -23,8 +23,8 @@ public class ZombieController : MonoBehaviour
     {
         if (Vector3.Distance(this.transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) < 1.0f){
             Debug.Log("Player Morreu");
-            // unlockCursor();
-            // SceneManager.LoadScene(0);
+            unlockCursor();
+            SceneManager.LoadScene(0);
         }
 
     }
