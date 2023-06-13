@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class ZombieController : MonoBehaviour
@@ -20,7 +21,18 @@ public class ZombieController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Vector3.Distance(this.transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) < 1.0f){
+            Debug.Log("Player Morreu");
+            unlockCursor();
+            SceneManager.LoadScene(0);
+        }
 
+    }
+
+    private void unlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void TakeDamage(int damage)
@@ -36,13 +48,13 @@ public class ZombieController : MonoBehaviour
     }
 
     IEnumerator Die()
-{
-    animator.SetTrigger("Fall");
-    // Play the Fall motion
-    yield return new WaitForSeconds(2f);
-    // Destroy the zombie
-    Destroy(gameObject);
-    // Remove the zombie from the spawnedObjects list in ObjectSpawner
-    objectSpawner.RemoveObject(gameObject);
-} 
+    {
+        animator.SetTrigger("Fall");
+        // Play the Fall motion
+        yield return new WaitForSeconds(2f);
+        // Destroy the zombie
+        Destroy(gameObject);
+        // Remove the zombie from the spawnedObjects list in ObjectSpawner
+        objectSpawner.RemoveObject(gameObject);
+    } 
 }
