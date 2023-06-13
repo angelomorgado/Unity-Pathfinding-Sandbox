@@ -7,14 +7,15 @@ public class ZombieController : MonoBehaviour
     private Animator animator;
     [SerializeField] private int health = 3;
     private AudioSource gunAudio; 
-    [SerializeField] private GameObject target;
+    private ObjectSpawner objectSpawner;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         gunAudio = GetComponent<AudioSource>();
-    }
+        objectSpawner = FindObjectOfType<ObjectSpawner>();
+    } 
 
     // Update is called once per frame
     void Update()
@@ -35,11 +36,13 @@ public class ZombieController : MonoBehaviour
     }
 
     IEnumerator Die()
-    {
-        animator.SetTrigger("Fall");
-        // Play the Fall motion
-        yield return new WaitForSeconds(2f);
-        // Destroy the zombie
-        Destroy(gameObject);
-    }
+{
+    animator.SetTrigger("Fall");
+    // Play the Fall motion
+    yield return new WaitForSeconds(2f);
+    // Destroy the zombie
+    Destroy(gameObject);
+    // Remove the zombie from the spawnedObjects list in ObjectSpawner
+    objectSpawner.RemoveObject(gameObject);
+} 
 }

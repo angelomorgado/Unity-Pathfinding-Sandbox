@@ -59,7 +59,7 @@ public class VrGunController : MonoBehaviour
             // Check if the object tag is Target
             if(hitObject.CompareTag("Zombie"))
             {
-                hitObject.GetComponent<GunTarget>().TakeDamage(gunDamage);
+                hitObject.GetComponent<ZombieController>().TakeDamage(gunDamage);
             }
             else if(hitObject.CompareTag("Target"))
             {
