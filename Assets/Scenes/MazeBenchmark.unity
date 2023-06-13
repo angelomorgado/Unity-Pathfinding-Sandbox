@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   surface: {fileID: 809538157}
-  Algorithm: 0
+  Algorithm: 1
   FullRandom: 1
   RandomSeed: 12546
   Floor: {fileID: 165842, guid: 8d3b36f175a633f429d7bda54c76550d, type: 3}
@@ -196,7 +196,6 @@ MonoBehaviour:
   surface: {fileID: 809538157}
   blueWaypoint: {fileID: 363706852}
   redWaypoint: {fileID: 212112428}
-  minDistance: 5
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
