@@ -30,7 +30,6 @@ public class Agent : MonoBehaviour
         else
             algo = AlgoEnum.Dijkstra;
         
-        Debug.Log("ALGO: " + algo);
         navigation = new Navigation(algo);
         nodesOps = new NodesOperations();
     }
@@ -74,7 +73,6 @@ public class Agent : MonoBehaviour
             Vector3 targetPosition = nodePositions[currentNodeIndex];
             while (transform.position != targetPosition)
             {
-                Debug.Log(transform.position);
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
                 transform.LookAt(target.position);
                 yield return null;
