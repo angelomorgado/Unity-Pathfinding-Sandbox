@@ -8,6 +8,10 @@ TagManager:
   - CinemachineTarget
   - Zombie
   - Ground
+  - Coin
+  - Floor
+  - RedZombie
+  - BlueZombie
   layers:
   - Default
   - TransparentFX
