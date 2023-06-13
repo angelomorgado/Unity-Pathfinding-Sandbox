@@ -36,24 +36,26 @@ public class MazeController : MonoBehaviour
     }
 
     Vector3 RandomNavmeshLocation()
+{
+    UnityEngine.AI.NavMeshTriangulation navMeshData = UnityEngine.AI.NavMesh.CalculateTriangulation();
+    int maxIndices = navMeshData.indices.Length - 3;
+
+    while (true)
     {
-        UnityEngine.AI.NavMeshTriangulation navMeshData = UnityEngine.AI.NavMesh.CalculateTriangulation();
-        int maxIndices = navMeshData.indices.Length - 3;
+        int randomIndex = Random.Range(0, maxIndices);
+        Vector3 vertex1 = navMeshData.vertices[navMeshData.indices[randomIndex]];
+        Vector3 vertex2 = navMeshData.vertices[navMeshData.indices[randomIndex + 1]];
+        Vector3 vertex3 = navMeshData.vertices[navMeshData.indices[randomIndex + 2]];
 
-        while (true)
+        Vector3 centerPoint = (vertex1 + vertex2 + vertex3) / 3f;
+
+        UnityEngine.AI.NavMeshHit hit;
+        if (UnityEngine.AI.NavMesh.SamplePosition(centerPoint, out hit, 1f, UnityEngine.AI.NavMesh.AllAreas))
         {
-            int randomIndex = Random.Range(0, maxIndices);
-            Vector3 randomPoint = Vector3.Lerp(navMeshData.vertices[navMeshData.indices[randomIndex]], navMeshData.vertices[navMeshData.indices[randomIndex + 1]], Random.value);
-            randomPoint = Vector3.Lerp(randomPoint, navMeshData.vertices[navMeshData.indices[randomIndex + 2]], Random.value);
-
-            UnityEngine.AI.NavMeshHit hit;
-            if (UnityEngine.AI.NavMesh.SamplePosition(randomPoint, out hit, 1f, UnityEngine.AI.NavMesh.AllAreas))
-            {
-                Vector3 direction = hit.position - randomPoint;
-                Vector3 centerPoint = randomPoint + direction.normalized * 0.5f;
-                return centerPoint;
-            }
+            return hit.position;
         }
     }
+}
+
 
 }
