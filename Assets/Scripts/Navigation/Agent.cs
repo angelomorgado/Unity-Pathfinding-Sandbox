@@ -20,7 +20,8 @@ public class Agent : MonoBehaviour
     private List<Vector3> nodePositions;
     private int currentNodeIndex = 0;
     public float movementSpeed = 5f;
-    private bool isMoving = false; 
+    public bool isMoving = false; 
+    private Animator animator;
     
     private void Awake()
     {
@@ -32,6 +33,9 @@ public class Agent : MonoBehaviour
         
         navigation = new Navigation(algo);
         nodesOps = new NodesOperations();
+
+        // Get animator from children
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -64,6 +68,9 @@ public class Agent : MonoBehaviour
 
         // Start moving towards the first node
         StartCoroutine(MoveToNextNode(destination));
+
+        // Walk animation
+        animator.SetTrigger("Walk");
     }
 
     private IEnumerator MoveToNextNode(Vector3 destination)
@@ -74,7 +81,7 @@ public class Agent : MonoBehaviour
             while (transform.position != targetPosition)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
-                transform.LookAt(target.position);
+                transform.LookAt(new Vector3(targetPosition.x, transform.position.y, targetPosition.z));
                 yield return null;
             }
 
@@ -104,6 +111,4 @@ public class Agent : MonoBehaviour
         isMoving = false;
         currentNodeIndex = 0;
     }
-
-
 }

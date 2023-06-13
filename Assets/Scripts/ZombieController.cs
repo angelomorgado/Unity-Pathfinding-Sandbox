@@ -23,8 +23,8 @@ public class ZombieController : MonoBehaviour
     {
         if (Vector3.Distance(this.transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) < 1.0f){
             Debug.Log("Player Morreu");
-            unlockCursor();
-            SceneManager.LoadScene(0);
+            // unlockCursor();
+            // SceneManager.LoadScene(0);
         }
 
     }
@@ -49,9 +49,11 @@ public class ZombieController : MonoBehaviour
 
     IEnumerator Die()
     {
+        this.GetComponent<Agent>().isMoving = false;
+        yield return new WaitForSeconds(0.1f);
         animator.SetTrigger("Fall");
         // Play the Fall motion
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         // Destroy the zombie
         Destroy(gameObject);
         // Remove the zombie from the spawnedObjects list in ObjectSpawner
