@@ -19,15 +19,22 @@ public class ObjectSpawner : MonoBehaviour
 
     private void SpawnObjects()
     {
-        Debug.Log("FORA:" + spawnedObjects.Count);
         while (spawnedObjects.Count < maxObjects)
         {
-            Debug.Log("DENTRO:" + spawnedObjects.Count);
             GameObject spawner = GetRandomSpawner();
-            GameObject spawnedObject = Instantiate(objectToSpawn, spawner.transform.position, Quaternion.identity);
+            Vector2 randomOffset = Random.insideUnitCircle.normalized * 5f;
+            Vector3 spawnPosition = spawner.transform.position + new Vector3(randomOffset.x, 0f, randomOffset.y);
+            Quaternion spawnRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+            GameObject spawnedObject = Instantiate(objectToSpawn, spawnPosition, spawnRotation);
+            
+            // Set the target of the spawned zombie
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+            spawnedObject.GetComponent<Agent>().target = playerObject.transform;
+            
             spawnedObjects.Add(spawnedObject);
         }
     }
+
 
     private GameObject GetRandomSpawner()
     {
@@ -36,8 +43,8 @@ public class ObjectSpawner : MonoBehaviour
     }
 
 
-   public void RemoveObject(GameObject objectToRemove)
-{
-    spawnedObjects.Remove(objectToRemove);
-} 
+    public void RemoveObject(GameObject objectToRemove)
+    {
+        spawnedObjects.Remove(objectToRemove);
+    } 
 }

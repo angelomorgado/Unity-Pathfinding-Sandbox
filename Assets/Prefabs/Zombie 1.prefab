@@ -933,7 +933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 4529246291973144240, guid: 32e4a1ada898a734f8170b7aee94cc23, type: 3}
   algo: 0
-  movementSpeed: 1
+  movementSpeed: 5
 --- !u!64 &1887598480809197819
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -945,7 +945,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!23 &1887598480809197821
