@@ -12,6 +12,7 @@ TagManager:
   - Floor
   - RedZombie
   - BlueZombie
+  - Zombies
   layers:
   - Default
   - TransparentFX
