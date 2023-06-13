@@ -7,14 +7,12 @@ public class ObjectSpawner : MonoBehaviour
     public List<GameObject> spawners;
     public GameObject objectToSpawn;
     public int maxObjects;
-
     public List<GameObject> spawnedObjects = new List<GameObject>();
 
 
     private void Update()
     {
         SpawnObjects();
-        
     }
 
     private void SpawnObjects()

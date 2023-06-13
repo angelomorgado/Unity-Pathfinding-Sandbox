@@ -81,12 +81,29 @@ public class Agent : MonoBehaviour
             currentNodeIndex++;
         }
 
-
         // Reached the end of the nodes
-        // You can perform any desired action here
-        Debug.Log("Reached the end of the nodes");
+        // Apply noise to the target position
+        Vector3 finalTargetPosition = nodePositions[nodePositions.Count - 1];
+        Vector3 noise = new Vector3(
+            Random.Range(-1.0f, 1.0f),
+            0.0f,
+            Random.Range(-1.0f, 1.0f)
+        );
+        Vector3 noisyTargetPosition = finalTargetPosition + noise;
+
+        // Move towards the noisy target position
+        while (transform.position != noisyTargetPosition)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, noisyTargetPosition, movementSpeed * Time.deltaTime);
+            transform.LookAt(target.position);
+            yield return null;
+        }
+
+        // Perform any desired action after reaching the final position with noise
+        Debug.Log("Reached the end of the nodes with noise");
         isMoving = false;
         currentNodeIndex = 0;
     }
+
 
 }
