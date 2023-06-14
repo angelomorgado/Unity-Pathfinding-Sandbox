@@ -50,8 +50,8 @@ public class ZombieController : MonoBehaviour
     {
         health -= damage;
         gunAudio.Play();
-        Debug.Log("Zombie health: " + health);
-        if(health <= 0)
+        
+        if(health == 0)
         {
             // Wait for 1 second
             StartCoroutine(Die());
@@ -60,11 +60,23 @@ public class ZombieController : MonoBehaviour
 
     IEnumerator Die()
     {
-        this.GetComponent<Agent>().isMoving = false;
-        yield return new WaitForSeconds(0.1f);
+        // Get DeathSound child
+        AudioSource deathSound = transform.GetChild(2).GetComponent<AudioSource>();
+        // Play the death sound
+        deathSound.Play();
+
+        // Remove the agent component
+        Destroy(this.GetComponent<Agent>());
+        // Stop the walk animation
+        animator.SetBool("Walk", false);
+
         animator.SetTrigger("Fall");
+        yield return new WaitForSeconds(0.5f);
+        animator.speed = 0;
+        yield return new WaitForSeconds(2f);
+        
+        // Freeze the animation
         // Play the Fall motion
-        yield return new WaitForSeconds(1.5f);
         // Destroy the zombie
         Destroy(gameObject);
         // Remove the zombie from the spawnedObjects list in ObjectSpawner
