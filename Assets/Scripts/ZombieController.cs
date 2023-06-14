@@ -21,15 +21,22 @@ public class ZombieController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {  
-        // Kill the player if the zombie is close enough
-        // Get the correct player
-        GameObject player = (GameObject.Find("Player") != null) ? GameObject.Find("Player") : GameObject.Find("XR Origin");
+        // // Kill the player if the zombie is close enough
+        // // Get the correct player
+        GameObject player = (GameObject.Find("PlayerCapsule") != null) ? GameObject.Find("PlayerCapsule") : GameObject.Find("XR Origin");
 
         if (Vector3.Distance(this.transform.position, player.transform.position) < 1.0f){
             Debug.Log("Player Morreu");
             unlockCursor();
             SceneManager.LoadScene(0);
         }
+
+        // if (Vector3.Distance(this.transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) < 1.0f){
+        //     Debug.Log("Player Morreu");
+        //     unlockCursor();
+        //     SceneManager.LoadScene(0);
+        // }
+
 
     }
 
