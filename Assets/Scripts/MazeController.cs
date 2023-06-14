@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.AI.Navigation;
+using UnityEngine.SceneManagement;
 
 public class MazeController : MonoBehaviour
 {
@@ -41,6 +42,14 @@ public class MazeController : MonoBehaviour
         if (Vector3.Distance(greenWaypoint.transform.position, GameObject.FindGameObjectWithTag("GreenZombie").transform.position) < 2.5f)
         {
             greenWaypoint.transform.position = RandomNavmeshLocation();
+        }
+
+        // Redirects user to main menu
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
